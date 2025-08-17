@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Theory - Tic-Tac-Toe AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-brain me-2"></i>AI Algorithms Demo
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/pathfinding">Pathfinding</a>
+                <a class="nav-link" href="/graph_coloring">Graph Coloring</a>
+                <a class="nav-link active" href="/game_theory">Game Theory</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h4><i class="fas fa-chess me-2"></i>Tic-Tac-Toe vs AI</h4>
+                        <p class="mb-0 text-muted">Play against an unbeatable AI using Minimax with Alpha-Beta pruning</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="game-container text-center">
+                            <div class="game-board">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="game-cell" data-index="0"></div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="game-cell" data-index="1"></div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="game-cell" data-index="2"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="game-cell" data-index="3"></div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="game-cell" data-index="4"></div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="game-cell" data-index="5"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="game-cell" data-index="6"></div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="game-cell" data-index="7"></div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="game-cell" data-index="8"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5><i class="fas fa-gamepad me-2"></i>Game Controls</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <h6>Current Status:</h6>
+                            <div id="gameStatus" class="alert alert-info">
+                                Your turn! You are X, AI is O
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <h6>Game Statistics:</h6>
+                            <div class="row text-center">
+                                <div class="col-4">
+                                    <div class="stat-box">
+                                        <h4 id="playerWins">0</h4>
+                                        <small>Player Wins</small>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="stat-box">
+                                        <h4 id="aiWins">0</h4>
+                                        <small>AI Wins</small>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="stat-box">
+                                        <h4 id="ties">0</h4>
+                                        <small>Ties</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button id="newGameBtn" class="btn btn-primary">
+                                <i class="fas fa-plus me-2"></i>New Game
+                            </button>
+                            <button id="resetStatsBtn" class="btn btn-secondary">
+                                <i class="fas fa-redo me-2"></i>Reset Stats
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-info-circle me-2"></i>AI Algorithm</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6>Minimax with Alpha-Beta Pruning</h6>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success me-2"></i>Optimal decision making</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Unbeatable AI opponent</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Performance optimization</li>
+                        </ul>
+                        
+                        <h6>How it works:</h6>
+                        <p class="small text-muted">
+                            The AI explores all possible future game states and chooses the move that maximizes 
+                            its chances of winning while minimizing the player's chances.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-chart-line me-2"></i>Algorithm Analysis</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h6>Minimax Algorithm</h6>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check text-success me-2"></i>Optimal strategy</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Complete game tree search</li>
+                                    <li><i class="fas fa-times text-danger me-2"></i>Exponential complexity</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <h6>Alpha-Beta Pruning</h6>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check text-success me-2"></i>Performance optimization</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Reduces search space</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Maintains optimality</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <h6>Game Theory</h6>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check text-success me-2"></i>Strategic decision making</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Zero-sum game analysis</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Perfect information</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/game_theory.js') }}"></script>
+</body>
+</html> 
