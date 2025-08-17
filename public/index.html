@@ -3,210 +3,255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Algorithm Visualizer</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            color: white;
-        }
-
-        .header h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .card {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-
-        .card h2 {
-            color: #667eea;
-            margin-bottom: 15px;
-            font-size: 1.8rem;
-        }
-
-        .card p {
-            color: #666;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .card .features {
-            list-style: none;
-            margin-bottom: 20px;
-        }
-
-        .card .features li {
-            padding: 5px 0;
-            color: #555;
-        }
-
-        .card .features li:before {
-            content: "✓";
-            color: #667eea;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-
-        .btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .footer {
-            text-align: center;
-            color: white;
-            opacity: 0.8;
-            margin-top: 40px;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .cards {
-                grid-template-columns: 1fr;
-            }
-            
-            .container {
-                padding: 15px;
-            }
-        }
-    </style>
+    <title>AI Pathfinding & Game Theory Algorithms</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Algorithm Visualizer</h1>
-            <p>Interactive visualization of fundamental algorithms and data structures</p>
-        </div>
-
-        <div class="cards">
-            <div class="card" onclick="window.location.href='/pathfinding.html'">
-                <h2>🚀 Pathfinding Algorithms</h2>
-                <p>Explore different pathfinding algorithms and see how they navigate through complex mazes.</p>
-                <ul class="features">
-                    <li>Depth-First Search (DFS)</li>
-                    <li>Breadth-First Search (BFS)</li>
-                    <li>A* Algorithm</li>
-                    <li>Real-time visualization</li>
-                    <li>Performance comparison</li>
-                </ul>
-                <button class="btn">Explore Pathfinding</button>
-            </div>
-
-            <div class="card" onclick="window.location.href='/graph-coloring.html'">
-                <h2>🎨 Graph Coloring</h2>
-                <p>Solve constraint satisfaction problems using advanced graph coloring algorithms.</p>
-                <ul class="features">
-                    <li>Arc Consistency Algorithm</li>
-                    <li>DFS Backtracking</li>
-                    <li>Interactive graph visualization</li>
-                    <li>Constraint satisfaction</li>
-                    <li>Multiple color schemes</li>
-                </ul>
-                <button class="btn">Solve Graph Coloring</button>
-            </div>
-
-            <div class="card" onclick="window.location.href='/game-theory.html'">
-                <h2>🎮 Game Theory</h2>
-                <p>Play against an AI powered by the minimax algorithm and explore game theory concepts.</p>
-                <ul class="features">
-                    <li>Minimax Algorithm</li>
-                    <li>Alpha-Beta Pruning</li>
-                    <li>Interactive Tic-Tac-Toe</li>
-                    <li>AI strategy analysis</li>
-                    <li>Game state visualization</li>
-                </ul>
-                <button class="btn">Play Game Theory</button>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-brain me-2"></i>AI Algorithms Demo
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="#overview">Overview</a>
+                <a class="nav-link" href="#algorithms">Algorithms</a>
+                <a class="nav-link" href="#demo">Demo</a>
             </div>
         </div>
+    </nav>
 
-        <div class="footer">
-            <p>Built with modern web technologies and Python algorithms</p>
+    <header class="hero-section">
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold text-white mb-4">
+                        AI Pathfinding & Game Theory Algorithms
+                    </h1>
+                    <p class="lead text-white-50 mb-4">
+                        Interactive visualization of classic AI algorithms including DFS, BFS, A* search, 
+                        graph coloring, and game theory with minimax optimization.
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="#demo" class="btn btn-primary btn-lg">
+                            <i class="fas fa-play me-2"></i>Try Demo
+                        </a>
+                        <a href="#algorithms" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-code me-2"></i>View Code
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-visual">
+                        <div class="algorithm-card">
+                            <div class="card-icon">
+                                <i class="fas fa-route"></i>
+                            </div>
+                            <h5>Pathfinding</h5>
+                            <p>DFS, BFS, A* Search</p>
+                        </div>
+                        <div class="algorithm-card">
+                            <div class="card-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <h5>Graph Coloring</h5>
+                            <p>Arc Consistency, Backtracking</p>
+                        </div>
+                        <div class="algorithm-card">
+                            <div class="card-icon">
+                                <i class="fas fa-chess"></i>
+                            </div>
+                            <h5>Game Theory</h5>
+                            <p>Minimax, Alpha-Beta Pruning</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </header>
 
-    <script>
-        // Add some interactive effects
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-            });
+    <section id="overview" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-title">Project Overview</h2>
+                    <p class="lead mb-5">
+                        This project demonstrates mastery of fundamental AI algorithms through interactive visualizations 
+                        and performance analysis. Perfect for showcasing algorithmic thinking and problem-solving skills.
+                    </p>
+                </div>
+            </div>
             
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h4>Search Algorithms</h4>
+                        <p>Systematic exploration strategies with optimal pathfinding using heuristic functions.</p>
+                        <ul class="feature-list">
+                            <li>Depth-First Search (DFS)</li>
+                            <li>Breadth-First Search (BFS)</li>
+                            <li>A* Search with Euclidean Heuristic</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h4>Constraint Satisfaction</h4>
+                        <p>Graph coloring algorithms for solving constraint satisfaction problems efficiently.</p>
+                        <ul class="feature-list">
+                            <li>Arc Consistency Algorithm</li>
+                            <li>DFS Backtracking</li>
+                            <li>European Map Coloring</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chess"></i>
+                        </div>
+                        <h4>Game Theory</h4>
+                        <p>Strategic decision-making algorithms for two-player zero-sum games.</p>
+                        <ul class="feature-list">
+                            <li>Minimax Algorithm</li>
+                            <li>Alpha-Beta Pruning</li>
+                            <li>Tic-Tac-Toe AI</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        // Add smooth scrolling for any anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+    <section id="algorithms" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-title">Algorithm Details</h2>
+                    <p class="lead mb-5">
+                        Each algorithm is implemented with careful attention to efficiency and correctness, 
+                        providing both educational value and practical insights.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="algorithm-detail-card">
+                        <h4><i class="fas fa-route me-2"></i>Pathfinding Algorithms</h4>
+                        <div class="algorithm-tabs">
+                            <button class="tab-btn active" data-algorithm="dfs">DFS</button>
+                            <button class="tab-btn" data-algorithm="bfs">BFS</button>
+                            <button class="tab-btn" data-algorithm="astar">A*</button>
+                        </div>
+                        <div class="algorithm-description">
+                            <p><strong>Depth-First Search (DFS):</strong> Explores as far as possible along each branch before backtracking. Uses a stack data structure and is memory efficient but may not find the shortest path.</p>
+                            <p><strong>Breadth-First Search (BFS):</strong> Explores all nodes at the current depth before moving to nodes at the next depth level. Uses a queue and guarantees the shortest path.</p>
+                            <p><strong>A* Search:</strong> Informed search algorithm that uses heuristic functions to estimate the cost to reach the goal. Combines the benefits of both uniform-cost search and greedy best-first search.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="algorithm-detail-card">
+                        <h4><i class="fas fa-palette me-2"></i>Graph Coloring</h4>
+                        <div class="algorithm-tabs">
+                            <button class="tab-btn active" data-algorithm="arc">Arc Consistency</button>
+                            <button class="tab-btn" data-algorithm="backtracking">Backtracking</button>
+                        </div>
+                        <div class="algorithm-description">
+                            <p><strong>Arc Consistency:</strong> A constraint propagation technique that removes inconsistent values from variable domains. It's a preprocessing step that can significantly reduce the search space.</p>
+                            <p><strong>DFS Backtracking:</strong> Systematic search through the space of possible assignments. When a constraint violation is detected, the algorithm backtracks to the previous decision point and tries a different assignment.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="demo" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-title">Interactive Demos</h2>
+                    <p class="lead mb-5">
+                        Experience these algorithms in action with our interactive visualizations. 
+                        Each demo provides real-time feedback and performance metrics.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="demo-card" onclick="window.location.href='/pathfinding.html'">
+                        <div class="demo-icon">
+                            <i class="fas fa-route"></i>
+                        </div>
+                        <h4>Pathfinding Demo</h4>
+                        <p>Visualize how different search algorithms explore a maze to find the optimal path from start to goal.</p>
+                        <div class="demo-features">
+                            <span class="badge bg-primary">DFS</span>
+                            <span class="badge bg-success">BFS</span>
+                            <span class="badge bg-info">A*</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="demo-card" onclick="window.location.href='/graph-coloring.html'">
+                        <div class="demo-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h4>Graph Coloring Demo</h4>
+                        <p>Solve the European map coloring problem using constraint satisfaction algorithms.</p>
+                        <div class="demo-features">
+                            <span class="badge bg-warning">Arc Consistency</span>
+                            <span class="badge bg-danger">Backtracking</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="demo-card" onclick="window.location.href='/game-theory.html'">
+                        <div class="demo-icon">
+                            <i class="fas fa-chess"></i>
+                        </div>
+                        <h4>Game Theory Demo</h4>
+                        <p>Play Tic-Tac-Toe against an unbeatable AI powered by the minimax algorithm.</p>
+                        <div class="demo-features">
+                            <span class="badge bg-dark">Minimax</span>
+                            <span class="badge bg-secondary">Alpha-Beta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-brain me-2"></i>AI Algorithms Demo</h5>
+                    <p class="mb-0">Interactive visualization of fundamental AI algorithms for educational purposes.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Built with ❤️ using Python, Flask, and modern web technologies</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/main.js"></script>
 </body>
 </html>
