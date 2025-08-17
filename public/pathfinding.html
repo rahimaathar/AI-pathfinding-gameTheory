@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pathfinding Algorithms</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .maze-container {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .maze {
+            display: grid;
+            grid-template-columns: repeat(20, 20px);
+            grid-template-rows: repeat(20, 20px);
+            gap: 1px;
+            background: #ddd;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .cell {
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 1px solid #eee;
+        }
+
+        .cell.start {
+            background: #4CAF50;
+        }
+
+        .cell.goal {
+            background: #f44336;
+        }
+
+        .cell.explored {
+            background: #2196F3;
+            opacity: 0.7;
+        }
+
+        .cell.path {
+            background: #FF9800;
+        }
+
+        .results {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .results h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .loading {
+            text-align: center;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-btn">← Back to Home</a>
+        
+        <h1>🚀 Pathfinding Algorithms</h1>
+        
+        <div class="controls">
+            <button class="btn" onclick="runAlgorithm('dfs')">Run DFS</button>
+            <button class="btn" onclick="runAlgorithm('bfs')">Run BFS</button>
+            <button class="btn" onclick="runAlgorithm('astar')">Run A*</button>
+            <button class="btn" onclick="clearMaze()">Clear</button>
+        </div>
+
+        <div class="maze-container">
+            <div class="maze" id="maze"></div>
+        </div>
+
+        <div class="results" id="results" style="display: none;">
+            <h3>Results</h3>
+            <div id="resultContent"></div>
+        </div>
+
+        <div class="loading" id="loading" style="display: none;">
+            Running algorithm...
+        </div>
+    </div>
+
+    <script>
+        let mazeData = null;
+        const start = [20, 20];
+        const goal = [1, 1];
+
+        // Initialize maze
+        function initMaze() {
+            const maze = document.getElementById('maze');
+            maze.innerHTML = '';
+            
+            for (let i = 1; i <= 20; i++) {
+                for (let j = 1; j <= 20; j++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'cell';
+                    cell.id = `cell-${i}-${j}`;
+                    
+                    if (i === start[0] && j === start[1]) {
+                        cell.classList.add('start');
+                    } else if (i === goal[0] && j === goal[1]) {
+                        cell.classList.add('goal');
+                    }
+                    
+                    maze.appendChild(cell);
+                }
+            }
+        }
+
+        // Clear maze visualization
+        function clearMaze() {
+            const cells = document.querySelectorAll('.cell');
+            cells.forEach(cell => {
+                cell.classList.remove('explored', 'path');
+            });
+            document.getElementById('results').style.display = 'none';
+        }
+
+        // Run algorithm
+        async function runAlgorithm(algorithm) {
+            const loading = document.getElementById('loading');
+            const results = document.getElementById('results');
+            
+            loading.style.display = 'block';
+            results.style.display = 'none';
+            clearMaze();
+
+            try {
+                const response = await fetch('/api/pathfinding', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        algorithm: algorithm,
+                        start: start,
+                        goal: goal
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+
+                // Visualize results
+                visualizeResults(data);
+                
+                // Show results
+                showResults(data);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error running algorithm: ' + error.message);
+            } finally {
+                loading.style.display = 'none';
+            }
+        }
+
+        // Visualize algorithm results
+        function visualizeResults(data) {
+            // Show explored cells
+            data.explored.forEach(pos => {
+                const cell = document.getElementById(`cell-${pos[0]}-${pos[1]}`);
+                if (cell && !cell.classList.contains('start') && !cell.classList.contains('goal')) {
+                    cell.classList.add('explored');
+                }
+            });
+
+            // Show path
+            setTimeout(() => {
+                data.path.forEach(pos => {
+                    const cell = document.getElementById(`cell-${pos[0]}-${pos[1]}`);
+                    if (cell && !cell.classList.contains('start') && !cell.classList.contains('goal')) {
+                        cell.classList.add('path');
+                    }
+                });
+            }, 1000);
+        }
+
+        // Show results
+        function showResults(data) {
+            const results = document.getElementById('results');
+            const content = document.getElementById('resultContent');
+            
+            content.innerHTML = `
+                <div class="result-item">
+                    <span>Algorithm:</span>
+                    <span>${data.algorithm.toUpperCase()}</span>
+                </div>
+                <div class="result-item">
+                    <span>Cells Explored:</span>
+                    <span>${data.explored_count}</span>
+                </div>
+                <div class="result-item">
+                    <span>Path Length:</span>
+                    <span>${data.path_length}</span>
+                </div>
+                <div class="result-item">
+                    <span>Optimal:</span>
+                    <span>${data.algorithm === 'bfs' || data.algorithm === 'astar' ? 'Yes' : 'No'}</span>
+                </div>
+            `;
+            
+            results.style.display = 'block';
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', initMaze);
+    </script>
+</body>
+</html>

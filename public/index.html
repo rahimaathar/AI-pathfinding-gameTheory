@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithm Visualizer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .card .features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .card .features li {
+            padding: 5px 0;
+            color: #555;
+        }
+
+        .card .features li:before {
+            content: "✓";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            opacity: 0.8;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Algorithm Visualizer</h1>
+            <p>Interactive visualization of fundamental algorithms and data structures</p>
+        </div>
+
+        <div class="cards">
+            <div class="card" onclick="window.location.href='/pathfinding.html'">
+                <h2>🚀 Pathfinding Algorithms</h2>
+                <p>Explore different pathfinding algorithms and see how they navigate through complex mazes.</p>
+                <ul class="features">
+                    <li>Depth-First Search (DFS)</li>
+                    <li>Breadth-First Search (BFS)</li>
+                    <li>A* Algorithm</li>
+                    <li>Real-time visualization</li>
+                    <li>Performance comparison</li>
+                </ul>
+                <button class="btn">Explore Pathfinding</button>
+            </div>
+
+            <div class="card" onclick="window.location.href='/graph-coloring.html'">
+                <h2>🎨 Graph Coloring</h2>
+                <p>Solve constraint satisfaction problems using advanced graph coloring algorithms.</p>
+                <ul class="features">
+                    <li>Arc Consistency Algorithm</li>
+                    <li>DFS Backtracking</li>
+                    <li>Interactive graph visualization</li>
+                    <li>Constraint satisfaction</li>
+                    <li>Multiple color schemes</li>
+                </ul>
+                <button class="btn">Solve Graph Coloring</button>
+            </div>
+
+            <div class="card" onclick="window.location.href='/game-theory.html'">
+                <h2>🎮 Game Theory</h2>
+                <p>Play against an AI powered by the minimax algorithm and explore game theory concepts.</p>
+                <ul class="features">
+                    <li>Minimax Algorithm</li>
+                    <li>Alpha-Beta Pruning</li>
+                    <li>Interactive Tic-Tac-Toe</li>
+                    <li>AI strategy analysis</li>
+                    <li>Game state visualization</li>
+                </ul>
+                <button class="btn">Play Game Theory</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Built with modern web technologies and Python algorithms</p>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactive effects
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add smooth scrolling for any anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
