@@ -1,7 +1,8 @@
 // Main JavaScript for AI Algorithms Demo
 document.addEventListener('DOMContentLoaded', function () {
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    console.log('DOM loaded, initializing JavaScript...');
+    // Smooth scrolling for navigation links (only navbar links)
+    document.querySelectorAll('.navbar-nav a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
@@ -11,6 +12,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     block: 'start'
                 });
             }
+        });
+    });
+
+    // Add debugging for main buttons
+    document.querySelectorAll('.hero-section .btn').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            console.log('Button clicked:', this.textContent.trim(), 'href:', this.getAttribute('href'));
         });
     });
 
@@ -48,6 +56,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         card.addEventListener('mouseleave', function () {
             this.style.transform = 'translateY(0) scale(1)';
+        });
+
+        // Add click debugging
+        card.addEventListener('click', function (e) {
+            console.log('Demo card clicked:', this.querySelector('h4').textContent);
         });
     });
 
