@@ -10,11 +10,6 @@ This project implements three fundamental AI algorithms with stunning modern vis
 2. **🎨 Graph Coloring** - Arc Consistency and DFS Backtracking for constraint satisfaction  
 3. **🎮 Game Theory** - Minimax with Alpha-Beta pruning for unbeatable Tic-Tac-Toe AI
 
-## 🌟 Live Demo
-
-**Vercel Deployment**: [Coming Soon - Deploy to see live demo]
-
-**Local Flask Version**: Run `python app.py` and visit `http://localhost:5000`
 
 ## 🚀 Features
 
@@ -60,11 +55,6 @@ This project implements three fundamental AI algorithms with stunning modern vis
 - **FontAwesome** - Professional icons and visual elements
 - **CSS3** - Custom styling with gradients and animations
 
-### Deployment
-- **Vercel** - Serverless deployment with automatic scaling
-- **Heroku** - Traditional hosting (Procfile included)
-- **Railway** - Alternative Python hosting (railway.json included)
-
 ## 📊 Performance Analysis
 
 ### Pathfinding Algorithms Comparison
@@ -84,47 +74,7 @@ This project implements three fundamental AI algorithms with stunning modern vis
 - **Alpha-Beta Pruning**: 50-90% reduction in explored nodes
 - **Unbeatable AI**: Optimal strategy for Tic-Tac-Toe
 
-## 🎮 Interactive Demos
 
-### 🌐 Web Interface (Recommended)
-
-#### Option 1: Vercel Deployment (Production Ready)
-```bash
-# Deploy to Vercel
-1. Fork this repository
-2. Connect to Vercel dashboard
-3. Deploy automatically
-4. Visit your live URL
-```
-
-#### Option 2: Local Flask Development
-```bash
-# Install dependencies
-pip install -r requirements.txt
-
-# Run Flask application
-python app.py
-
-# Open browser to http://localhost:5000
-```
-
-### 💻 Command Line Interface
-For traditional terminal-based execution:
-
-```bash
-# Pathfinding algorithms
-python task1.py --bfs    # Breadth-First Search
-python task1.py --dfs    # Depth-First Search  
-python task1.py --astar  # A* Search
-
-# Graph coloring algorithms
-python task2.py --arc    # Arc Consistency
-python task2.py --dfs    # DFS Backtracking
-python task2.py --graph  # Display graph
-
-# Game theory
-python task3.py          # Interactive Tic-Tac-Toe
-```
 
 ## 🏗️ Project Structure
 
@@ -158,35 +108,8 @@ python task3.py          # Interactive Tic-Tac-Toe
 
 ### Quick Start
 
-#### For Flask Development
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/algorithm-visualizer.git
-cd algorithm-visualizer
 
-# Install dependencies
-pip install -r requirements.txt
 
-# Run Flask application
-python app.py
-
-# Open browser to http://localhost:5000
-```
-
-#### For Vercel Deployment
-```bash
-# Fork and clone the repository
-git clone https://github.com/yourusername/algorithm-visualizer.git
-cd algorithm-visualizer
-
-# Deploy to Vercel
-vercel
-
-# Or connect via Vercel dashboard
-# 1. Go to vercel.com/dashboard
-# 2. Import your repository
-# 3. Deploy automatically
-```
 
 ## 📝 Usage Examples
 
@@ -245,72 +168,3 @@ This project demonstrates mastery of:
 - **Constraint satisfaction** techniques for complex problems
 - **Game theory principles** for strategic decision making
 - **Search space exploration** strategies
-
-## 🎯 Resume-Ready Highlights
-
-### Technical Skills Demonstrated
-- **Algorithm Implementation**: DFS, BFS, A*, Minimax, Arc Consistency
-- **Data Structures**: Stacks, Queues, Priority Queues, Graphs
-- **Optimization Techniques**: Alpha-Beta pruning, Heuristic functions
-- **Web Development**: Flask, JavaScript, HTML5 Canvas, Bootstrap
-- **Deployment**: Vercel serverless, Heroku, Railway
-
-### Soft Skills Showcased
-- **Problem Decomposition**: Breaking complex AI problems into manageable components
-- **Performance Analysis**: Understanding and optimizing algorithmic complexity
-- **User Experience**: Creating intuitive interfaces for complex algorithms
-- **Documentation**: Professional-grade project documentation
-
-## 🌟 Key Features
-
-### Visual Excellence
-- **Gradient backgrounds** and modern color schemes
-- **Smooth animations** and hover effects
-- **Responsive design** for all device sizes
-- **Professional typography** and spacing
-
-### Interactive Experience
-- **Real-time algorithm visualization** with canvas
-- **Adjustable animation speeds** for learning
-- **Performance comparison** tools
-- **Interactive game interface** with AI opponent
-
-### Technical Robustness
-- **Error handling** and user feedback
-- **Cross-browser compatibility**
-- **Mobile-responsive design**
-- **Optimized for serverless deployment**
-
-## 🚀 Deployment Options
-
-### Vercel (Recommended)
-- **Automatic scaling** and global CDN
-- **Serverless functions** for algorithm execution
-- **Free tier** with generous limits
-- **Git integration** for automatic deployments
-
-### Heroku
-- **Traditional hosting** with Procfile
-- **Easy deployment** from Git repository
-- **Scalable** for production use
-
-### Railway
-- **Python-focused** hosting platform
-- **Simple deployment** process
-- **Good performance** for Python applications
-
-## 📄 License
-
-This project is created for educational purposes and portfolio demonstration. Feel free to use, modify, and distribute according to your needs.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📞 Contact
-
-For questions or feedback, please open an issue on GitHub.
-
----
-
-**Built with ❤️ using Python, Flask, JavaScript, and modern web technologies** 
